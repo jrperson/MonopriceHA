@@ -16,8 +16,8 @@ AudioFileSourceBuffer *buff = NULL;
 const int preallocateBufferSize = 2048;
 void *preallocateBuffer = NULL;
 
-const char *ssid = "NETGEAR64";
-const char *password = "slowpond833";
+const char *ssid = "SSID";
+const char *password = "Password";
 
 #define RELAY_PIN 32
 #define MAX_SRV_CLIENTS 1
