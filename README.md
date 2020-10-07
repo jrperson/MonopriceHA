@@ -1,4 +1,4 @@
-# Hubitat-Monoprice-6-zone-serial-PA
+# MonopriceHA
 
 This is a Platformio project to use an ESP32 as a PA trigger/player and wifi to serial adapter for the Monoprice Whole Home Audio system.
 
