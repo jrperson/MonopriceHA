@@ -13,11 +13,9 @@ AudioGeneratorMP3 *mp3 = NULL;
 AudioOutputI2S *out = NULL;
 AudioFileSourceHTTPStream *file_http = NULL;
 AudioFileSourceBuffer *buff = NULL;
-const int preallocateBufferSize = 2048;
-void *preallocateBuffer = NULL;
 
 const char *ssid = "SSID";
-const char *password = "Password";
+const char *password = "PASSWORD";
 
 #define RELAY_PIN 32
 #define MAX_SRV_CLIENTS 1
@@ -86,6 +84,7 @@ void setup(void) {
   delay(1000);
 
   WiFi.setHostname("MonopriceHA");
+	WiFi.mode(WIFI_STA);
   WiFi.begin(ssid, password);
   Serial.println("");
 
@@ -103,6 +102,7 @@ void setup(void) {
   server.on("/", HTTP_GET, [](AsyncWebServerRequest *request) {
 		if(request->hasParam("url")) {
 			String url = request->getParam("url")->value();
+			url.replace(" ", "%20");
 		  Serial.println(url);
 		  int url_len = url.length() + 1;
 		  char url_array[url_len];
@@ -110,12 +110,13 @@ void setup(void) {
 
 		  stopPlaying();
 		  digitalWrite(RELAY_PIN, HIGH);
+			audioLogger = &Serial;
 		  file_http = new AudioFileSourceHTTPStream(url_array);
-			file_http->RegisterMetadataCB(MDCallback, (void*)"HTTP");
-		  buff = new AudioFileSourceBuffer(file_http, preallocateBuffer, preallocateBufferSize);
-		  buff->RegisterStatusCB(StatusCallback, (void*)"buffer");
+			// file_http->RegisterMetadataCB(MDCallback, (void*)"HTTP");
+		  buff = new AudioFileSourceBuffer(file_http, 2048);
+		  // buff->RegisterStatusCB(StatusCallback, (void*)"buffer");
 		  mp3 = new AudioGeneratorMP3();
-		  mp3->RegisterStatusCB(StatusCallback, (void*)"mp3");
+		  // mp3->RegisterStatusCB(StatusCallback, (void*)"mp3");
 		  mp3->begin(buff, out);
 
 		}
@@ -128,8 +129,7 @@ void setup(void) {
   Serial.println("HTTP server started");
 
   out = new AudioOutputI2S(0, 1);
-  out->SetGain(0.9);
-  out->SetOutputModeMono(true);
+  // out->SetGain(0.9);
 }
 
 void loop(void) {
