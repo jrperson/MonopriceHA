@@ -54,9 +54,6 @@ void StatusCallback(void *cbData, int code, const char *string)
 void stopPlaying() {
   digitalWrite(RELAY_PIN, LOW);
   if (mp3) {
-    Serial.print(F("...#"));
-    Serial.println(F("Interrupted!"));
-    Serial.println();
 
     mp3->stop();
     delete mp3;
