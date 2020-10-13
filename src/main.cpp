@@ -14,13 +14,12 @@ AudioOutputI2S *out = NULL;
 AudioFileSourceHTTPStream *file_http = NULL;
 AudioFileSourceBuffer *buff = NULL;
 
-const char *ssid = "The Citadel";
-const char *password = "AIwwaP,j1P,ffs";
+const char *ssid = "SSID";
+const char *password = "PASSWORD";
 
 #define RELAY_PIN 32
 #define MAX_SRV_CLIENTS 1
 
-// WebServer server(80);
 AsyncWebServer server(80);
 // WiFiServer serverTelnet(23);
 WiFiClient serverClients[MAX_SRV_CLIENTS];
@@ -116,7 +115,7 @@ void setup(void) {
 
 void loop(void) {
   if(mp3 && mp3->isRunning()) {
-    // Serial.println("playing...");
+    Serial.println("playing...");
     if (!mp3->loop()) {
       Serial.println("ended");
       stopPlaying();
