@@ -93,7 +93,7 @@ void setup(void) {
 		  stopPlaying();
 
 		  file_http = new AudioFileSourceHTTPStream(url_array);
-		  buff = new AudioFileSourceBuffer(file_http, 16*1024);
+		  buff = new AudioFileSourceBuffer(file_http, 2048);
 		  buff->RegisterStatusCB(StatusCallback, (void*)"buffer");
 		  mp3 = new AudioGeneratorMP3();
 		  mp3->RegisterStatusCB(StatusCallback, (void*)"mp3");
