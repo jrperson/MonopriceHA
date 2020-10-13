@@ -1,0 +1,23 @@
+ESP32 Dev Board
+https://www.amazon.com/HiLetgo-ESP-WROOM-32-Development-Microcontroller-Integrated/dp/B0718T232Z
+$11
+
+PCM5102 DAC
+https://www.amazon.com/gp/product/B07G48VNTW
+$11
+
+RS232 to TTL Converter
+https://www.amazon.com/gp/product/B00OPTOKI0
+$10
+
+3.5mm Stereo Jack Socket
+https://www.amazon.com/gp/product/B008SNZUYC
+$1
+
+5V/12V Buck Converter
+https://www.amazon.com/gp/product/B01NALDSJ0
+$10
+
+Relay
+https://www.amazon.com/gp/product/B01NACU547
+$2
